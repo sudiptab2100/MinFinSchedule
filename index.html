@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medicine Schedule</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 50px;
+        background: #f4f7ff;
+      }
+      h1 {
+        margin-bottom: 30px;
+      }
+      .medicine {
+        font-size: 24px;
+        margin: 20px;
+      }
+      .yes {
+        color: green;
+      }
+      .no {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Today's Medicine Schedule</h1>
+    <div class="medicine">Min: <span class="yes">Take</span></div>
+    <div class="medicine">Fin: <span id="fin-status"></span></div>
+
+    <script>
+      const today = new Date();
+      const startDate = new Date("2025", "5", "2", "0", "0", "0"); // First day Fin was taken
+      console.log("Today's date:", today);
+      console.log("Start date:", startDate);
+      const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
+
+      const takeFin = diffDays % 2 === 0; // Take on even number of days passed
+      const finSpan = document.getElementById("fin-status");
+      finSpan.textContent = takeFin ? "Take" : "Skip";
+      finSpan.className = takeFin ? "yes" : "no";
+    </script>
+  </body>
+</html>
